@@ -2,7 +2,7 @@ import React, {memo, useCallback, useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import PropTypes from "prop-types";
 import {CREATE_COMMENT_REQUESTED, GET_COMMENT_REQUESTED} from "../redux/actions/charges-actions";
-import {connect, useDispatch} from "react-redux";
+import {connect, useDispatch, useSelector} from "react-redux";
 
 
 const CommentList = (props) => {
@@ -13,6 +13,7 @@ const CommentList = (props) => {
     const [name, setName] = useState();
     const [body, setBody] = useState();
     const dispatch = useDispatch();
+
     const callComments = useCallback(
         () =>
             dispatch({type: GET_COMMENT_REQUESTED, payload: id}),
