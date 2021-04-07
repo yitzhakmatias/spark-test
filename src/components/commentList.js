@@ -14,9 +14,11 @@ const CommentList = (props) => {
     const [body, setBody] = useState();
     useEffect(() => {
         getComments(id)
+    }, [getComments, id]);
+    useEffect(() => {
 
         setCommentList(comments)
-    }, []);
+    }, [comments]);
     const handleSubmit = (e) => {
         e.preventDefault();
         // ???
@@ -29,11 +31,11 @@ const CommentList = (props) => {
         }
         createComment(newElement);
         setCommentList( [...comments, newElement])
-        //setCommentList( comments)
+
     }
     const form = () => {
         return (
-            <React.Fragment>
+            <>
                 <form onSubmit={e => {
                     handleSubmit(e)
                 }} className="">
@@ -74,7 +76,7 @@ const CommentList = (props) => {
                     </div>
 
                 </form>
-            </React.Fragment>
+            </>
         );
     }
     return (
@@ -88,7 +90,7 @@ const CommentList = (props) => {
             <table className="table">
                 <thead>
                 <tr>
-                    <th><abbr title="Position">Id</abbr></th>
+
                     <th>Title</th>
                     <th>Email</th>
                     <th><abbr title="Played">Body</abbr></th>
@@ -97,7 +99,7 @@ const CommentList = (props) => {
                 <tbody>
                 {commentList && commentList.map((post, index) => (
                     <tr key={index}>
-                        <th>{post.id}</th>
+
                         <td>
                            {post.name}
                         </td>
@@ -126,6 +128,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     getComments: (id) => dispatch({type: GET_COMMENT_REQUESTED, payload: id}),
     createComment: (comment) => dispatch({type: CREATE_COMMENT_REQUESTED, payload: comment})
-    //deleteTodo: (id) => dispatch({ type: DELETE_TODO_REQUESTED, payload: id })
+
 })
 export default memo(connect(mapStateToProps, mapDispatchToProps)(CommentList));

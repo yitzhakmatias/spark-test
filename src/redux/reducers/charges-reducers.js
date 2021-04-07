@@ -3,10 +3,9 @@ import {
     GET_COMMENTS,
     SET_TODO_TITLE,
     CREATE_COMMENT,
-    DELETE_TODO,
-    CLEAR_TODO_TITLE
+    GET_POSTS
+
 } from '../actions/charges-actions.js'
-import {GET_POSTS} from "../actions/charges-actions";
 
 // Define your state here
 const initialState = {
@@ -25,7 +24,7 @@ const postsReducer = (state = initialState, {type, payload}) => {
                 ...state,
                 loading: true
             }
-        // Get todos
+        // Get posts
         case GET_POSTS:
             return {
                 ...state,
@@ -38,27 +37,21 @@ const postsReducer = (state = initialState, {type, payload}) => {
                 comments: payload,
                 loading: false
             }
-        // Set todo title from user that gonna input a title in form
+
         case SET_TODO_TITLE:
             return {
                 ...state,
                 title: payload
             }
-        // Create new todo
+        // Create new comment
         case CREATE_COMMENT:
             return {
                 ...state,
                 comments: [payload, ...state.comments],
                 loading: false
             }
-        // Clear todo title in form after creating a new one
-        case CLEAR_TODO_TITLE:
-            return {
-                ...state,
-                title: ''
-            }
 
-        // Return default state if you didn't match any case
+
         default:
             return state
     }

@@ -1,18 +1,33 @@
-import React, {memo, useEffect} from 'react';
-import {connect} from "react-redux";
+import React, {memo, useCallback, useEffect, useState} from 'react';
+import {connect, useDispatch} from "react-redux";
 import {GET_POST_REQUESTED} from "../redux/actions/charges-actions";
 import PropTypes from 'prop-types'
 import {Link} from "react-router-dom";
 
 const PostList = (props) => {
 
-
-
     const {posts, loading, getPosts} = props;
+    const [postList, setPostList] = useState([]);
+    const dispatch = useDispatch();
+
+    const callPosts = useCallback(
+        () =>
+            dispatch({
+                type: GET_POST_REQUESTED
+            }),
+        [dispatch],
+    )
+
     useEffect(() => {
-        getPosts()
-        // eslint-disable-next-line
-    }, []);
+        if (posts.length === 0){
+            const getPosts = () => callPosts();
+            getPosts()
+        }
+
+    }, [getPosts, posts.length, callPosts]);
+    useEffect(() => {
+        setPostList(posts)
+    }, [posts]);
     return (
         <div>
             <h1 className="title">Posts</h1>
@@ -21,15 +36,14 @@ const PostList = (props) => {
             <table className="table">
                 <thead>
                 <tr>
-                    <th><abbr title="Position">Id</abbr></th>
+
                     <th>Title</th>
                     <th><abbr title="Played">Body</abbr></th>
                 </tr>
                 </thead>
                 <tbody>
-                {posts && posts.map((post, index) => (
+                {postList && postList.map((post, index) => (
                     <tr key={index}>
-                        <th>{post.id}</th>
                         <td>
                             <Link to={`/comments/${post.id}`}>{post.title}</Link>
                         </td>
@@ -44,7 +58,7 @@ const PostList = (props) => {
 
 PostList.propTypes = {
     loading: PropTypes.bool,
-    posts: PropTypes.array,
+    posts: PropTypes.array
 
 }
 // Get state to props
@@ -53,9 +67,4 @@ const mapStateToProps = (state) => ({
     loading: state.charges.loading
 })
 
-// Get dispatch / function to props
-const mapDispatchToProps = (dispatch) => ({
-    getPosts: () => dispatch({type: GET_POST_REQUESTED}),
-    //deleteTodo: (id) => dispatch({ type: DELETE_TODO_REQUESTED, payload: id })
-})
-export default memo(connect(mapStateToProps, mapDispatchToProps)(PostList));
+export default memo(connect(mapStateToProps)(PostList));
