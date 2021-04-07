@@ -24,14 +24,10 @@ export const getAllComments = async (id) => {
         return console.error(err)
     }
 }
-// Create New Todo
-export const createNewComment = async (title) => {
+// Create New Comment
+export const createNewComment = async (comment) => {
     try {
-        const todo = await axios.post('todos', {
-            title
-        })
-
-        return todo.data.title
+        return comment
     } catch(err) {
         return console.error(err)
     }

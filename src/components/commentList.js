@@ -1,8 +1,8 @@
-import React, {memo, useEffect, useState} from 'react';
+import React, {memo, useCallback, useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import PropTypes from "prop-types";
 import {CREATE_COMMENT_REQUESTED, GET_COMMENT_REQUESTED} from "../redux/actions/charges-actions";
-import {connect} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 
 
 const CommentList = (props) => {
@@ -12,9 +12,17 @@ const CommentList = (props) => {
     const [email, setEmail] = useState();
     const [name, setName] = useState();
     const [body, setBody] = useState();
+    const dispatch = useDispatch();
+    const callComments = useCallback(
+        () =>
+            dispatch({type: GET_COMMENT_REQUESTED, payload: id}),
+        [dispatch, id],
+    )
+
     useEffect(() => {
+        const getComments =()=>callComments()
         getComments(id)
-    }, [getComments, id]);
+    }, [getComments, id,callComments]);
     useEffect(() => {
 
         setCommentList(comments)
@@ -29,6 +37,7 @@ const CommentList = (props) => {
             email: email,
             body: body
         }
+       // const createComment =()=>callComments()
         createComment(newElement);
         setCommentList( [...comments, newElement])
 
@@ -126,7 +135,7 @@ const mapStateToProps = (state) => ({
 
 // Get dispatch / function to props
 const mapDispatchToProps = (dispatch) => ({
-    getComments: (id) => dispatch({type: GET_COMMENT_REQUESTED, payload: id}),
+
     createComment: (comment) => dispatch({type: CREATE_COMMENT_REQUESTED, payload: comment})
 
 })
