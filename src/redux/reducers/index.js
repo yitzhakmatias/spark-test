@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux';
 
 // Reducers
-import charges from './charges-reducers'
+import charges from './post-comments-reducers';
 
 export default combineReducers({
-    charges,
-    // Here you can registering another reducers.
-})
+  charges,
+  // Here you can registering another reducers.
+});

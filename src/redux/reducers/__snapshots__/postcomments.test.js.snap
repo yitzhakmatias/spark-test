@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`post comments reducer CREATE_COMMENT 1`] = `
+Object {
+  "comments": Array [
+    Object {
+      "body": "testsetsetset",
+      "name": "Czechmademan",
+      "postId": 2,
+    },
+  ],
+  "loading": false,
+  "posts": Array [],
+  "title": "",
+}
+`;
+
+exports[`post comments reducer GET_COMMENTS 1`] = `
+Object {
+  "comments": undefined,
+  "loading": false,
+  "posts": Array [],
+  "title": "",
+}
+`;
+
+exports[`post comments reducer GET_POSTS 1`] = `
+Object {
+  "comments": Array [],
+  "loading": false,
+  "posts": undefined,
+  "title": "",
+}
+`;
+
+exports[`post comments reducer SET_LOADING 1`] = `
+Object {
+  "comments": Array [],
+  "loading": true,
+  "posts": Array [],
+  "title": "",
+}
+`;
+
+exports[`user reducer CREATE_COMMENT 1`] = `
+Object {
+  "comments": Array [
+    Object {
+      "body": "testsetsetset",
+      "name": "Czechmademan",
+      "postId": 2,
+    },
+  ],
+  "loading": false,
+  "posts": Array [],
+  "title": "",
+}
+`;
+
+exports[`user reducer GET_COMMENTS 1`] = `
+Object {
+  "comments": undefined,
+  "loading": false,
+  "posts": Array [],
+  "title": "",
+}
+`;
+
+exports[`user reducer GET_POSTS 1`] = `
+Object {
+  "comments": Array [],
+  "loading": false,
+  "posts": undefined,
+  "title": "",
+}
+`;
+
+exports[`user reducer SET_LOADING 1`] = `
+Object {
+  "comments": Array [],
+  "loading": true,
+  "posts": Array [],
+  "title": "",
+}
+`;
