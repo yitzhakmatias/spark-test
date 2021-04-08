@@ -85,7 +85,7 @@ const CommentList = () => {
     <div>
       <section className="section">
         <h1 className="title">Add Comment</h1>
-        {Form()}
+        <Form/>
         {loading && 'Loading...'}
         <br/>
         <h1 className="title">Comments</h1>
