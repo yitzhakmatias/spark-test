@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`user actions createNewComment 1`] = `Promise {}`;
+
+exports[`user actions getAllComments 1`] = `Promise {}`;
+
+exports[`user actions getAllPosts 1`] = `Promise {}`;
